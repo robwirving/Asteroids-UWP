@@ -2,6 +2,7 @@ using System.Numerics;
 using Windows.UI;
 using AsteroidsUWP.Core;
 using Microsoft.Graphics.Canvas;
+using Microsoft.Graphics.Canvas.Text;
 
 namespace AsteroidsUWP.GameObjects
 {
@@ -16,9 +17,8 @@ namespace AsteroidsUWP.GameObjects
 
         public void Draw(CanvasDrawingSession graphics)
         {
-            Draw(graphics, "PRESS S TO START GAME!", 0);
-            Draw(graphics, "F to shoot and arrows to move ship", 20);
-            Draw(graphics, "X to exit game", 40);
+            Draw(graphics, "PRESS DIAL BUTTON TO START GAME!", 0);
+            Draw(graphics, "Press dial to shoot and rotate dial to aim", 20);
         }
 
         public void Draw(CanvasDrawingSession graphics, string message, int offset)
@@ -26,7 +26,8 @@ namespace AsteroidsUWP.GameObjects
             var position = new Vector2((int)(_parent.WindowWidth / 2),
                                        (int)(_parent.WindowHeight / 2 + offset));
 
-            graphics.DrawText(message, position, Colors.White);
+            var format = new CanvasTextFormat {HorizontalAlignment = CanvasHorizontalAlignment.Center};
+            graphics.DrawText(message, position, Colors.White, format);
         }
     }
 }
